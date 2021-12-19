@@ -1,0 +1,21 @@
+.App {
+  padding: 16px;
+}
+
+.row {
+  display: flex;
+  justify-content: stretch;
+}
+
+.column {
+  flex: 1 1 0;
+  margin-right: 8px;
+  align-items: top;
+}
+.column > * {
+  flex: 0 0 auto;
+}
+
+.column:last-child {
+  margin-right: 0;
+}
