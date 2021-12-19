@@ -1,6 +1,6 @@
 import './Field.css'
 import iconX from '../../icons/x.svg'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 export const Field = ({
   value,
   setValue,
@@ -10,6 +10,7 @@ export const Field = ({
   error = null,
   required = false,
 }) => {
+  console.log('field', label, value)
   const [isInputError, setInputError] = useState(false)
 
   const isValueEmpty = value === placeholder
@@ -20,6 +21,11 @@ export const Field = ({
   const isButtonHidden = displayValue.length < 1
   const isBorderError = isInputError || (required && isValueEmpty)
   const isErrorMsgHidden = error == null
+
+  useEffect(() => {
+    if (value !== placeholder) setDisplayValue(value)
+    else setDisplayValue('')
+  }, [value, placeholder])
 
   const handleChange = (e) => {
     const val = e.target.value
