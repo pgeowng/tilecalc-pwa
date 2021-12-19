@@ -12,6 +12,11 @@
   margin-right: 8px;
   align-items: top;
 }
+
+.column_fixed {
+  flex: 0 1 auto;
+}
+
 .column > * {
   flex: 0 0 auto;
 }

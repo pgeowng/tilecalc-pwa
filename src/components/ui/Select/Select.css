@@ -1,0 +1,17 @@
+.select {
+}
+
+.select-label {
+}
+
+.select-elem {
+  background-color: transparent;
+  box-sizing: border-box;
+  padding: 0.45em;
+  /* for some reason firefox height: 27 and chrome height: 29px  */
+  min-height: 49px;
+  width: 100%;
+  border-radius: 4px;
+  font-size: 20px;
+  font-size: max(20px, 1.25em);
+}
