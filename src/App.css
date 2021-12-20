@@ -10,11 +10,14 @@
 .column {
   flex: 1 1 0;
   margin-right: 8px;
-  align-items: top;
 }
 
 .column_fixed {
   flex: 0 1 auto;
+}
+
+.column_bottom {
+  align-self: flex-end;
 }
 
 .column > * {

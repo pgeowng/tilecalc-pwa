@@ -3,14 +3,14 @@ import iconX from '../../icons/x.svg'
 import { useEffect, useState } from 'react'
 export const Field = ({
   value,
-  setValue,
+  setValue = null,
   label,
   placeholder = 0,
   disabled = false,
   error = null,
   required = false,
+  onFocus = () => {},
 }) => {
-  console.log('field', label, value)
   const [isInputError, setInputError] = useState(false)
 
   const isValueEmpty = value === placeholder
@@ -38,16 +38,22 @@ export const Field = ({
     }
 
     const parsed = parseFloat(val)
+    if (parseFloat(val) === value) {
+      return
+    }
     if (isNaN(parsed)) {
       setInputError(true)
       setValue(placeholder)
     } else {
       setInputError(false)
       setValue(parsed)
+      if (parsed !== 0 && val[0] === '0')
+        setDisplayValue(val.replace(/^0+(?=(0\.|\d))/, '')) // remove leading zeros 0004 and 004.2
     }
   }
 
   const handleClear = () => {
+    onFocus()
     setDisplayValue('')
     setValue(placeholder)
   }
@@ -58,15 +64,16 @@ export const Field = ({
       <div className="field-input-group">
         <input
           className={`field-input ${isBorderError ? 'field-input_error' : ''}`}
-          type="text"
+          type="number"
           placeholder={placeholder}
           disabled={disabled}
           value={displayValue}
           onChange={handleChange}
+          onFocus={onFocus}
         />
         <button
           className={`field-clear-button ${
-            isButtonHidden ? ' field-clear-button_hidden' : ''
+            isButtonHidden || disabled ? ' field-clear-button_hidden' : ''
           }`}
           type="button"
           onClick={handleClear}
