@@ -9,6 +9,7 @@ export const Field = ({
   disabled = false,
   error = null,
   required = false,
+  type = 'number',
   onFocus = () => {},
 }) => {
   const [isInputError, setInputError] = useState(false)
@@ -64,7 +65,7 @@ export const Field = ({
       <div className="field-input-group">
         <input
           className={`field-input ${isBorderError ? 'field-input_error' : ''}`}
-          type="number"
+          type={type}
           placeholder={placeholder}
           disabled={disabled}
           value={displayValue}
