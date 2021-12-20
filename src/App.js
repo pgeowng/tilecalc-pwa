@@ -1,8 +1,13 @@
 import { useCallback, useEffect, useState } from 'react'
 import './App.css'
+import { NavMenu } from './components/block/NavMenu/NavMenu.js'
 import { Field } from './components/ui/Field/Field.js'
 import { Select } from './components/ui/Select/Select.js'
 import { Arrow } from './components/ui/Arrow/Arrow.js'
+
+import iconDollarSign from './components/icons/dollar-sign.svg'
+import iconPackage from './components/icons/package.svg'
+import iconPlusSquare from './components/icons/plus-square.svg'
 
 const unitMap = ['м', 'см', 'мм']
 const unitExp = { м: 1000, см: 10, мм: 1 }
@@ -15,29 +20,35 @@ const defaultTotalArea = 0
 const LEFT = false
 const RIGHT = true
 
-const useStateListen = (defaultValue, defaultSubs = []) => {
-  const [value, setValue] = useState(defaultValue)
-  const [subs, setSubs] = useState(defaultSubs)
-
-  const setter = useCallback(
-    (val) => {
-      setValue(val)
-      subs.forEach((fn) => fn(value, val))
-    },
-    [subs, value]
-  )
-
-  return [value, setter]
-}
+const pages = [
+  {
+    id: 'price',
+    icon: iconDollarSign,
+    imgAlt: 'цена',
+    title: 'Цена плитки',
+  },
+  {
+    id: 'package',
+    icon: iconPackage,
+    imgAlt: 'упаковки',
+    title: 'Кол-во упаковок',
+  },
+  {
+    id: 'area',
+    icon: iconPlusSquare,
+    imgAlt: 'площадь',
+    title: 'Кв.м. упаковки',
+  },
+]
 
 const App = () => {
   const defaultWidth = 0
   const defaultLength = 0
 
-  const [width, setWidth] = useStateListen(defaultWidth)
-  const [length, setLength] = useStateListen(defaultLength)
+  const [width, setWidth] = useState(defaultWidth)
+  const [length, setLength] = useState(defaultLength)
 
-  const [units, setUnits] = useStateListen(unitMap[1])
+  const [units, setUnits] = useState(unitMap[1])
 
   const updateUnits = (newUnits) => {
     const oldExp = unitExp[units]
@@ -121,8 +132,17 @@ const App = () => {
     }
   }, [packTileCount, tileCount])
 
+  const [currentPage, setCurrentPage] = useState('price')
+
   return (
     <div className="App">
+      <div className="App-NavMenu">
+        <NavMenu
+          pages={pages}
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+        />
+      </div>
       <div className="row">
         <div className="column">
           <Field

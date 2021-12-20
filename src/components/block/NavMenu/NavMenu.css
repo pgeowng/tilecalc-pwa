@@ -1,0 +1,13 @@
+.nav-menu {
+  display: flex;
+}
+.nav-menu-button {
+  transition: width 0.6s cubic-bezier(0.65, 0, 0.35, 1);
+}
+.nav-menu-button_current {
+  flex: 1 0 auto;
+}
+
+.nav-menu-button_current > img {
+  margin-right: 8px;
+}
