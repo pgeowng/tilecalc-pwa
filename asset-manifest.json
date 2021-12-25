@@ -1,0 +1,18 @@
+{
+  "files": {
+    "main.css": "/tilecalc-pwa/static/css/main.c02e423e.css",
+    "main.js": "/tilecalc-pwa/static/js/main.04e48cdb.js",
+    "index.html": "/tilecalc-pwa/index.html",
+    "static/media/package.svg": "/tilecalc-pwa/static/media/package.52c71e7e25da7968262e5699db9efaf3.svg",
+    "static/media/plus-square.svg": "/tilecalc-pwa/static/media/plus-square.1254f9745b42217d16e8c047e1aea764.svg",
+    "static/media/dollar-sign.svg": "/tilecalc-pwa/static/media/dollar-sign.8d9a6f938731fde21207ac6851ae5fcb.svg",
+    "static/media/arrow-right.svg": "/tilecalc-pwa/static/media/arrow-right.f030f9db04711643a8b421bb60f13018.svg",
+    "static/media/x.svg": "/tilecalc-pwa/static/media/x.6c9a4ba71a333be7b021fc6da39d864c.svg",
+    "main.c02e423e.css.map": "/tilecalc-pwa/static/css/main.c02e423e.css.map",
+    "main.04e48cdb.js.map": "/tilecalc-pwa/static/js/main.04e48cdb.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.c02e423e.css",
+    "static/js/main.04e48cdb.js"
+  ]
+}
