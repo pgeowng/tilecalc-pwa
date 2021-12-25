@@ -7,6 +7,7 @@ import { Arrow } from './components/ui/Arrow/Arrow.js'
 
 import { PricePage } from './components/block/PricePage/PricePage'
 import { PackagePage } from './components/block/PackagePage/PackagePage'
+import { AreaPage } from './components/block/AreaPage/AreaPage'
 
 import iconDollarSign from './components/icons/dollar-sign.svg'
 import iconPackage from './components/icons/package.svg'
@@ -34,8 +35,17 @@ const pages = [
 ]
 
 const App = () => {
-
   const [currentPage, setCurrentPage] = useState('price')
+
+  // console.log(currentPage)
+
+  const getPageClasses = useCallback(
+    (label) => {
+      console.log('rerun')
+      return currentPage !== label ? 'hidden' : ''
+    },
+    [currentPage]
+  )
 
   return (
     <div className="App">
@@ -47,8 +57,15 @@ const App = () => {
         />
       </div>
       <hr />
-      <PricePage />
-      <PackagePage />
+      <div className={getPageClasses('price')}>
+        <PricePage />
+      </div>
+      <div className={getPageClasses('package')}>
+        <PackagePage />
+      </div>
+      <div className={getPageClasses('area')}>
+        <AreaPage />
+      </div>
     </div>
   )
 }

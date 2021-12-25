@@ -1,56 +1,18 @@
 import { useState, useEffect } from 'react'
 import { Field } from '../../ui/Field/Field'
-import { Select } from '../../ui/Select/Select'
 import { Arrow } from '../../ui/Arrow/Arrow'
 
-const unitMap = ['м', 'см', 'мм']
-const unitExp = { м: 1000, см: 10, мм: 1 }
+import { TileArea } from '../../common/TileArea'
+
+import { round, RIGHT, LEFT } from '../../../helpers'
 
 const defaultMeterPrice = 0
 const defaultTotalPrice = 0
 const defaultTileCount = 0
 const defaultTotalArea = 0
 
-const LEFT = false
-const RIGHT = true
-
 export const PricePage = () => {
-  const defaultWidth = 0
-  const defaultLength = 0
-
-  const [width, setWidth] = useState(defaultWidth)
-  const [length, setLength] = useState(defaultLength)
-
-  const [units, setUnits] = useState(unitMap[1])
-
-  const updateUnits = (newUnits) => {
-    const oldExp = unitExp[units]
-    const newExp = unitExp[newUnits]
-    setWidth((width * oldExp) / newExp)
-    setLength((length * oldExp) / newExp)
-    setUnits(newUnits)
-  }
-
   const [tileArea, setTileArea] = useState(0)
-
-  const round = (num, precision = 7) =>
-    Math.round(num * Math.pow(10, precision)) / Math.pow(10, precision)
-
-  useEffect(() => {
-    const trueWidth = width * unitExp[units]
-    const trueLength = length * unitExp[units]
-    setTileArea(round(trueWidth * trueLength * 1e-6))
-  }, [width, length, units])
-
-  const [err, setErr] = useState(null)
-  useEffect(() => {
-    setTimeout(() => {
-      setErr('hi world')
-      setTimeout(() => {
-        setErr(null)
-      }, 100000)
-    }, 1000)
-  }, [])
 
   const [tileCount, setTileCount] = useState(defaultTileCount)
   const [totalArea, setTotalArea] = useState(defaultTotalArea)
@@ -88,47 +50,7 @@ export const PricePage = () => {
   }, [priceDir, meterPrice, totalArea, totalPrice])
   return (
     <>
-      <div className="row">
-        <div className="column">
-          <Field
-            label="Ширина"
-            value={width}
-            setValue={setWidth}
-            placeholder={defaultWidth}
-            required
-          />
-        </div>
-        <div className="column">
-          <Field
-            label="Длина"
-            value={length}
-            setValue={setLength}
-            required
-            placeholder={defaultLength}
-            error={err}
-          />
-        </div>
-        <div className="column column_fixed">
-          <Select
-            value={units}
-            setValue={updateUnits}
-            options={unitMap}
-            label="Единицы"
-          />
-        </div>
-      </div>
-      <div className="row">
-        <div className="column">
-          <Field
-            disabled
-            label="Площадь (кв. м)"
-            value={tileArea}
-            placeholder={0}
-            setValue={null}
-            required
-          />
-        </div>
-      </div>
+      <TileArea onUpdateArea={setTileArea} />
       <div className="row">
         <div className="column">
           <Field

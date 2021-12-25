@@ -1,14 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Field } from '../../ui/Field/Field'
-
-const formDecl = (forms) => (num) => {
-  const n = num % 10
-  if (num < 5 || num > 20) {
-    if (n === 1) return forms[0]
-    else if (2 <= n && n <= 4) return forms[1]
-  }
-  return forms[2]
-}
+import { formDecl } from '../../../helpers'
 
 const remainDecl = formDecl([
   'лишняя плитка', // singular, nom
