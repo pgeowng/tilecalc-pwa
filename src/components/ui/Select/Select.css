@@ -1,10 +1,17 @@
 .select {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
 }
 
 .select-label {
+  margin-bottom: 4px;
 }
 
 .select-elem {
+  margin: 0;
+  flex: 1 0 49px;
+
   background-color: transparent;
   box-sizing: border-box;
   padding: 0.45em;
