@@ -66,6 +66,9 @@ const App = () => {
       <div className={getPageClasses('area')}>
         <AreaPage />
       </div>
+      <div className="App-feedback">
+        обратная связь tg: <a href="https://t.me/k5464">@k5464</a>
+      </div>
     </div>
   )
 }

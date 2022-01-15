@@ -1,10 +1,14 @@
 .App {
   padding: 16px;
+
+  /* display: flex;
+  flex-direction: column; */
 }
 
 .row {
   display: flex;
   justify-content: stretch;
+  margin-bottom: 4px;
 }
 
 .column {
@@ -30,4 +34,19 @@
 
 .hidden {
   display: none;
+}
+
+.App-feedback {
+  position: fixed;
+  bottom: 16px;
+  left: 16px;
+  color: #555;
+}
+
+.App-feedback > a {
+  color: #555;
+}
+
+.App-feedback > a:focus {
+  color: #222;
 }
